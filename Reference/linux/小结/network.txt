@@ -1,0 +1,37 @@
+
+
+内核网络协议栈小结
+
+
+网络协议栈分层模型
+
+    
+    用户空间     应用层           application
+
+    内核空间     协议无关层        socket
+
+                协议层           TCP/UDP
+
+                                IP
+                
+                设备无关层        network device    (Traffic Control) 
+
+                设备驱动         network driver
+    
+    硬件                         网卡
+
+
+sk_buff 数据结构  (linux 2.6.32  include/linux/skbuff.h)
+
+    sk_buff是内核协议栈中承载报文的数据结构，并且在协议栈的各个层次直接流动。
+
+
+
+
+net_device 数据结构  (linux 2.6.32  include/linux/netdevice.h)
+
+    抽象网络设备数据结构，提供网络设备的统一接口
+
+
+
+    

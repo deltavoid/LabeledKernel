@@ -1,0 +1,26 @@
+
+启用tc
+    tc qdisc del dev eth0 root
+    tc qdisc add dev eth0 root handle 1: htb
+    tc class add dev eth0 parent 1: classid 1: htb rate 1000mbit ceil 1000mbit
+    tc class add dev eth0 parent 1: classid 1:3 htb rate 10mbit
+    tc class add dev eth0 parent 1: classid 1:4 htb rate 10kbit
+    tc filter add dev eth0 protocol ip parent 1:0 prio 1 handle 1: cgroup
+
+配置cgroup
+    # 命令行使用
+    mount -t cgroup net_cls -o net_cls /cgroup/net_cls/
+    cd !$
+    cgcreate -g net_cls:test
+    echo '0x10004' &gt; /cgroup/net_cls/test/net_cls.classid
+    # 然后可以导出成文件之后通过工具管理
+    yum install -y libcgroup
+    cgsnapshot -s &gt; /etc/cgconfig.conf
+    /etc/init.d/cgconfig restart
+
+测试效果
+    time scp bigfile root@192.168.0.26:/tmp/
+    time cgexec -g net_cls:test scp bigfile root@192.168.0.26:/tmp/
+    echo $$ &gt; /cgroup/net_cls/test/tasks
+    tc class change dev eth0 parent 1: classid 1:4 htb rate 1mbit
+    time scp bigfile root@192.168.0.26:/tmp/

@@ -1,0 +1,53 @@
+
+heracles程序设计
+
+
+总体来说，应当首先具有对资源的监控与控制能力，然后设计资源的调度策略。
+
+
+资源
+    cores
+        监控：
+        控制：taskset, cgroup
+    
+    缓存
+        监控：perf?
+        控制：CAT
+    内存带宽
+        监控：
+        控制
+    频率
+        监控：cpufreq-info, /proc
+        控制：cpufreq-set, /proc
+    网络带宽
+        监控：
+        控制：
+进程
+    监控：tailbench
+    控制：挂起/唤醒，杀死
+
+调度策略
+
+
+
+
+
+
+
+
+
+
+
+
+    topcontroller
+
+    core_memory_controller    frequency_controller    network_controller    process_controller
+
+    core  cache  memeory      frequency               network               process
+
+
+
+
+
+
+

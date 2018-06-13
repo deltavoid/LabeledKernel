@@ -1,0 +1,10 @@
+
+
+目的
+
+    heracles保证在干扰情况下LC程序的latency
+
+    在保证latency的情况下提高资源利用率（memory bandwidth, cpu utilization, network bandwidth)
+
+
+

@@ -1,0 +1,24 @@
+
+1. CPU负载还是工作负载？
+
+2. SLO？
+
+3. 多线程，静态？动态？
+
+4. 资源类型
+    LLC(small)  false
+    LLC(medium)    false
+    LLC(big)    false
+    DRAM    false
+    HyperThread    true
+    CPU power    true?
+    Network    false?
+    brain
+
+5. LC程序
+    websearch    xapian
+    ml_cluster    img-dnn?
+    memkeyval    masstree
+
+6. 固定CPU？应当是固定的(brain除外）
+   固定频率？应当是不固定的(因为要测CPU power)

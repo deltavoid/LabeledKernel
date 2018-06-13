@@ -1,0 +1,8 @@
+
+http://man.linuxde.net/iperf
+
+server:
+    iperf -s
+
+client:
+    iperf -c <server> -t <time>

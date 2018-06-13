@@ -1,0 +1,12 @@
+
+
+linux内核网络协议栈
+
+http://www.cnblogs.com/sammyliu/p/5225623.html
+
+https://wenku.baidu.com/view/a1db598b0129bd64783e0912a216147917117e63.html
+http://th7.cn/system/lin/2011/08/11/18810.shtml
+
+https://www.ibm.com/developerworks/cn/linux/l-linux-networking-stack/index.html
+
+https://www.ibm.com/developerworks/cn/linux/kernel/l-qos/index.html

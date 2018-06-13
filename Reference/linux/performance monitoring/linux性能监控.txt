@@ -1,0 +1,6 @@
+
+http://www.brendangregg.com/linuxperf.html
+
+
+
+http://www.brendangregg.com/Articles/Netflix_Linux_Perf_Analysis_60s.pdf

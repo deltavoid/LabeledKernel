@@ -1,0 +1,4 @@
+
+
+echo 50000 > cpu.cfs_quota_us  #将cpu.cfs_quota_us设为50000，相对于cpu.cfs_period_us的100000是50%
+cat task.pid > tasks

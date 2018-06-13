@@ -1,0 +1,130 @@
+
+IX
+
+1. Introduction
+
+    basic mismatch between these requirements and existing networking stacks in commodity operating systems
+
+    IX separates the control plane from the dataplanes.
+    
+
+2. Background and Motivation
+
+    2.1 Challenges for Datacenter Applications
+        
+        Microsecond tail latency
+        
+        High packet rates
+        
+        Protection
+
+        Resource efficiency
+
+    2.2 The Hardware – OS Mismatch
+
+        A typical server includes one or two processor sockets, each with eight or more multithreaded cores and multiple, high-speed channels to DRAM and PCIe devices. 
+        For networking,10 GbE NICs and switches are widely deployed in datacenters,with 40 GbE and 100 GbE technologies right around the corner. 
+        
+        Unfortunately, commodity operating systems have  been designed under very different hardware assumptions. Kernel schedulers, networking APIs, and network stacks have been designed under the assumptions of multiple applications sharing a single processing core and packet inter-arrival times being many times higher than the latency of interrupts and system calls. 
+    
+    2.3 Alternative Approaches
+
+        User-space networking stacks
+
+        Alternatives to TCP
+
+        Alternatives to POSIX API
+
+        OS enhancements
+
+
+3. IX Design Approach
+
+    Separation and protection of control and data plane
+
+    Run to completion with adaptive batching
+
+    Native, zero-copy API with explicit flow control
+
+    Flow consistent, synchronization-free processing
+
+
+4. IX Implementation
+
+    4.1 Overview
+
+        Linux kernel in VMX root ring 0,(hypervisors). 
+        
+        dataplanes in VMX non-root ring 0, (guest kernels). 
+        
+        Applications in VMX non-root ring 3,(as usual).
+        
+        This approach provides dataplanes with direct access to hardware features, such as page tables and exceptions, and pass-through access to NICs. Moreover, it provides full, three-way protection between the control plane, dataplanes, and untrusted application code.
+
+    4.2 The IX Dataplane
+
+        memory management
+
+        time wheel
+
+        implementation
+
+
+    4.3 Dataplane API and Operation
+
+        the zero-copy API
+
+        the run to completion procedure
+
+    4.4 Multi-core Scalability
+
+         system call implementations can only be synchronization-free if the API itself is commutative [12].
+
+        Each elastic thread manages its own memory pools,hardware queues, event condition array, and batched system call array. 
+
+        the use of flow-consistent hashing at the NICs ensures that each elastic thread operates on a disjoint set of TCP flows
+
+    4.5 Security Model
+
+        architect seperation
+
+
+5. Evaluation    
+
+    5.1 Experimental Methodology
+
+        10GbE setup
+
+        4* 10GbE setup
+
+    5.2 Latency and Single-flow Bandwidth
+
+    5.3 Throughput and Scalability
+
+    5.4 Connection Scalability
+
+    5.5 Memcached Performance
+
+
+6. Discussion
+
+    What makes IX fast
+
+    Subtleties of adaptive batching
+
+    Limitations of current prototype
+
+    Future work
+
+
+7. Related Work
+
+    Hardware virtualization
+
+    Library operating systems
+
+    Asynchronous and zero-copy communication
+
+
+8. Conclusion
+

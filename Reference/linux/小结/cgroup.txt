@@ -1,0 +1,25 @@
+
+
+cgroup小结
+
+    cgroup是通过分组来控制进程资源使用的机制
+
+    cgroup提供若干个控制器：cpu, cpuset, memory, net_cls, net_prio等等，
+    每个控制器在/sys/fs/cgroup目录下存在一个目录（例如：/sys/fs/cgroup/cpuset)
+
+    每个控制器的文件夹下可以新建任意个目录(也就是控制分组），然后可以在目录里建建新的目录，递归下去。
+    每个目录里存在若干文件：cgroup.procs, tasks, ...
+        cgroup.procs: 写入在此控制分组中的进程的pid
+        tasks:写入在此控制分组中的线程的pid
+        控制器提供的具体控制文件：控制此分组所使用的资源
+
+    示例：
+    net_cls/
+        heracles/
+            LC/
+                cgroup.procs = <lc_pid>
+                net_cls.classid = <classid>
+            BE/
+                cgroup.procs = <be_pid>
+                net_cls.classid = <classid>
+    

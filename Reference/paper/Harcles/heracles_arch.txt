@@ -1,0 +1,10 @@
+
+
+资源测试
+    core
+    LLC
+    DRAM bandwidth
+    power/frequency
+    IO
+
+    资源有未满和满两种状态，未满时可以按需分配，且不应造成性能瓶颈，已满时应当按比例分配，且可以动态调节比例。

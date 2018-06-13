@@ -1,0 +1,42 @@
+
+
+内核tracing机制小结
+    
+    这里所讲的tracing是指我所知道的kprobe, tracepoint, ebpf, perf等机制
+
+kprobe
+
+    kprobe是一个在动态在内核函数入口处插入探测点的机制，
+    当探测点被触发时，就会激活响应的处理函数，
+    原始情况下，该函数写在内核模块中，现在也可以写在ebpf中。
+
+ebpf
+
+    ebpf是一个内建在内核中的执行环境，可以执行用户注入内核的ebpf代码，
+    通常ebpf与kprobe结合使用，ebpf提供看kprobe的响应函数，当krobe的事件被触发时，就执行相应的响应函数，
+    ebpf也可以挂接到tracepoint上，作为tracepoint的响应函数。
+
+    ebpf作为一个执行环境，提供一套指令集和一些API，
+    现在也可以通过编译器（如bcc）使用高级语言编写（比如C）编写ebpf程序。
+
+tracepoint
+
+    tracepoint是静态的，写在内核中的探测点，
+    可以直接使用，且通常更为安全
+
+perf
+
+    perf是一个通过统计内核事件来进行性能测量的工具，
+    perf通常统计静态内核事件。
+
+
+基本框架
+
+    总的来说，内核的跟踪框架使用的是事件响应机制，
+    tracepoint，kprobe提供事件，
+    perf，ebpf提供对事件的响应。
+
+    kprobe + ebpf
+    事件      事件响应
+
+

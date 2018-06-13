@@ -1,0 +1,25 @@
+
+ebpf讲稿
+
+1.ebpf的历史与作用
+
+    enhanced bsd packet filter
+
+
+2.ebpf的框架与原理
+
+    事件 + 响应
+    kprobe  ebpf
+
+    kprobe 是一个向内核中动态插入监测点的机制，当监测点被触发时，执行绑定的函数。
+
+    ebpf提供了一个虚拟的执行环境，提供一套指令集，一个编译器，用户程序可以在编译后注入内核执行。
+
+
+3.ebpf开发
+
+    bpf c程序
+
+    Python宿主程序
+
+    

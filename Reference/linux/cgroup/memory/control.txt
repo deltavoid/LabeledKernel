@@ -1,0 +1,3 @@
+
+root@zqy-Laptop:/sys/fs/cgroup/memory/test# echo 1000000000 > memory.limit_in_bytes
+root@zqy-Laptop:/sys/fs/cgroup/memory/test# echo 3983 > tasks

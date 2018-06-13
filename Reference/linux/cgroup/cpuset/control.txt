@@ -1,0 +1,5 @@
+
+echo 0 > cpuset.cpus
+
+//echo 6577 > tasks
+echo 6577 > cgroup.procs
